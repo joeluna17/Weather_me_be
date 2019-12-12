@@ -4,7 +4,6 @@ const http = require("http");
 const socketiIo = require("socket.io");
 const axios = require("axios");
 
-
 const DS_API_KEY = process.env.DS_API_KEY
 
 const PORT = process.env.PORT || 5000;
@@ -48,7 +47,8 @@ const getApiAndEmit = async socket => {
 
 io.on("connection", socket => {
   console.log("New Client Connected"),
-    setInterval(() => getApiAndEmit(socket), 20000);
+    getApiAndEmit(socket)
+    setInterval(() => getApiAndEmit(socket), 144000);
 
   socket.on("disconnect", () => {
     console.log("Client Has Disconnected");
